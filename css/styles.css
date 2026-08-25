@@ -167,3 +167,65 @@ main {
     border-radius: 50%;
     background-color: #D4AF37;
 }
+
+
+.nova-transacao {
+    margin-top: 40px;
+    background-color: #303030;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.nova-transacao h2 {
+    margin-bottom: 25px;
+}
+
+#form-transacao {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.campo input {
+    height: 40px;
+    padding: 0 12px;
+    background-color: #222222;
+    color: #dddddd;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    outline: none;
+}
+
+.campo input:focus {
+    border-color: #D4AF37;
+}
+
+#form-transacao button {
+    width: fit-content;
+    height: 40px;
+    padding: 0 18px;
+    color: #181818;
+    background-color: #D4AF37;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#form-transacao button:hover {
+    background-color: #b8962e;
+}
