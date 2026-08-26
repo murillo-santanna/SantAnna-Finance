@@ -3,6 +3,7 @@ const nomeInput = document.querySelector("#nome");
 const descricaoInput = document.querySelector("#descricao");
 const valorInput = document.querySelector("#valor");
 const listaTransacoes = document.querySelector("#lista-transacoes");
+const listaPendencias = document.querySelector("#lista-pendencias");
 
 const transacoes = [];
 
@@ -12,24 +13,30 @@ function salvarTransacoes() {
 
 function carregarTransacoes() {
     const dadosSalvos = localStorage.getItem("transacoes");
-    if(dadosSalvos){
+    if (dadosSalvos) {
         const transacoesSalvas = JSON.parse(dadosSalvos);
         transacoes.push(...transacoesSalvas)
     }
 }
 
+function obterPendencias() {
+    return transacoes.filter(transacao => {
+        return transacao.status === "Pendente";
+    });
+}
+
+function obterClassificadas() {
+    return transacoes.filter(transacao=>{
+        return transacao.status === "Classificada"
+    });
+}
+
 function renderizarTransacoes() {
     listaTransacoes.textContent = "";
-    transacoes.forEach(transacao => {
-
-        if(transacao.nome === "" || transacao.descricao === ""){
-            transacao.status = "Pendente";
-        }else{
-            transacao.status = "Classificada";   
-        }
+    obterClassificadas().forEach(transacao => {
         const elementoTransacao = document.createElement("div");
         elementoTransacao.classList.add("transacao-pendente");
-        
+
         const nomeElemento = document.createElement("span");
         nomeElemento.textContent = transacao.nome
         elementoTransacao.appendChild(nomeElemento);
@@ -39,21 +46,28 @@ function renderizarTransacoes() {
         elementoTransacao.appendChild(descricaoElemento);
 
         const valorElemento = document.createElement("span");
-        valorElemento.textContent = transacao.valor
+        valorElemento.textContent = `R$ ${transacao.valor}`
         elementoTransacao.appendChild(valorElemento);
 
         const dataElemento = document.createElement("span");
         dataElemento.textContent = transacao.dataHora
         elementoTransacao.appendChild(dataElemento);
 
-        if(transacao.status === "Pendente"){
-           const botaoClassificar = document.createElement("button");
-           botaoClassificar.textContent = "Classificar";
-           botaoClassificar.classList.add("classificar");
-           elementoTransacao.appendChild(botaoClassificar);
+        if (transacao.status === "Pendente") {
+            const botaoClassificar = document.createElement("button");
+            botaoClassificar.textContent = "Classificar";
+            botaoClassificar.classList.add("classificar");
+            elementoTransacao.appendChild(botaoClassificar);
         }
 
         listaTransacoes.appendChild(elementoTransacao);
+    });
+}
+
+function renderizarPendencias() {
+    const pendencias = obterPendencias();
+    pendencias.forEach(transacao =>{
+
     });
 }
 
@@ -71,7 +85,7 @@ function enviaFormulario(event) {
     const horaFormatada = String(hora).padStart(2, "0");
     const minutosFormatados = String(minutos).padStart(2, "0");
     const dataFormatada = `${diaFormatado}/${mesFormatado}/${ano} ${horaFormatada}:${minutosFormatados}`;
-    
+
     const nome = nomeInput.value;
     const descricao = descricaoInput.value;
     const valor = valorInput.value;
@@ -88,6 +102,12 @@ function enviaFormulario(event) {
     transacao.nome = nome;
     transacao.descricao = descricao;
     transacao.valor = valor;
+
+    if (transacao.nome === "" || transacao.descricao === "") {
+        transacao.status = "Pendente";
+    } else {
+        transacao.status = "Classificada";
+    }
     transacoes.push(transacao);
     salvarTransacoes();
     renderizarTransacoes();
@@ -96,6 +116,7 @@ function enviaFormulario(event) {
 }
 
 carregarTransacoes();
+console.log(obterPendencias());
 renderizarTransacoes();
 formTransacao.addEventListener("submit", enviaFormulario);
 
