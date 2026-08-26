@@ -29,7 +29,8 @@ function enviaFormulario(event) {
         nome: null,
         descricao: null,
         valor: null,
-        dataHora: dataFormatada
+        dataHora: dataFormatada,
+        status: null
     }
 
     transacao.nome = nome;
@@ -39,6 +40,12 @@ function enviaFormulario(event) {
 
     listaTransacoes.textContent = "";
     transacoes.forEach(transacao => {
+
+        if(transacao.nome === "" || transacao.descricao === ""){
+            transacao.status = "Pendente";
+        }else{
+            transacao.status = "Classificada";   
+        }
         const elementoTransacao = document.createElement("div");
         elementoTransacao.classList.add("transacao-pendente");
         
@@ -58,6 +65,14 @@ function enviaFormulario(event) {
         dataElemento.textContent = transacao.dataHora
         elementoTransacao.appendChild(dataElemento);
 
+        if(transacao.status === "Pendente"){
+           const botaoClassificar = document.createElement("button");
+           botaoClassificar.textContent = "Classificar";
+           botaoClassificar.classList.add("classificar");
+           elementoTransacao.appendChild(botaoClassificar);
+        }else{
+            transacao.status = "Classificada";   
+        }
         listaTransacoes.appendChild(elementoTransacao);
     });
     console.log(transacoes);
