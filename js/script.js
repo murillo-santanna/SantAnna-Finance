@@ -4,40 +4,21 @@ const descricaoInput = document.querySelector("#descricao");
 const valorInput = document.querySelector("#valor");
 const listaTransacoes = document.querySelector("#lista-transacoes");
 
-const transacoes = []
-function enviaFormulario(event) {
-    event.preventDefault();
+const transacoes = [];
 
-    const dataHora = new Date();
-    const dia = dataHora.getDate();
-    const mes = dataHora.getMonth() + 1;
-    const ano = dataHora.getFullYear();
-    const hora = dataHora.getHours();
-    const minutos = dataHora.getMinutes();
-    const diaFormatado = String(dia).padStart(2, "0");
-    const mesFormatado = String(mes).padStart(2, "0");
-    const horaFormatada = String(hora).padStart(2, "0");
-    const minutosFormatados = String(minutos).padStart(2, "0");
-    const dataFormatada = `${diaFormatado}/${mesFormatado}/${ano} ${horaFormatada}:${minutosFormatados}`;
-    
-    const nome = nomeInput.value;
-    const descricao = descricaoInput.value;
-    const valor = valorInput.value;
+function salvarTransacoes() {
+    localStorage.setItem("transacoes", JSON.stringify(transacoes));
+}
 
-    const transacao = {
-        id: transacoes.length + 1,
-        nome: null,
-        descricao: null,
-        valor: null,
-        dataHora: dataFormatada,
-        status: null
+function carregarTransacoes() {
+    const dadosSalvos = localStorage.getItem("transacoes");
+    if(dadosSalvos){
+        const transacoesSalvas = JSON.parse(dadosSalvos);
+        transacoes.push(...transacoesSalvas)
     }
+}
 
-    transacao.nome = nome;
-    transacao.descricao = descricao;
-    transacao.valor = valor;
-    transacoes.push(transacao);
-
+function renderizarTransacoes() {
     listaTransacoes.textContent = "";
     transacoes.forEach(transacao => {
 
@@ -70,15 +51,52 @@ function enviaFormulario(event) {
            botaoClassificar.textContent = "Classificar";
            botaoClassificar.classList.add("classificar");
            elementoTransacao.appendChild(botaoClassificar);
-        }else{
-            transacao.status = "Classificada";   
         }
+
         listaTransacoes.appendChild(elementoTransacao);
     });
+}
+
+function enviaFormulario(event) {
+    event.preventDefault();
+
+    const dataHora = new Date();
+    const dia = dataHora.getDate();
+    const mes = dataHora.getMonth() + 1;
+    const ano = dataHora.getFullYear();
+    const hora = dataHora.getHours();
+    const minutos = dataHora.getMinutes();
+    const diaFormatado = String(dia).padStart(2, "0");
+    const mesFormatado = String(mes).padStart(2, "0");
+    const horaFormatada = String(hora).padStart(2, "0");
+    const minutosFormatados = String(minutos).padStart(2, "0");
+    const dataFormatada = `${diaFormatado}/${mesFormatado}/${ano} ${horaFormatada}:${minutosFormatados}`;
+    
+    const nome = nomeInput.value;
+    const descricao = descricaoInput.value;
+    const valor = valorInput.value;
+
+    const transacao = {
+        id: transacoes.length + 1,
+        nome: null,
+        descricao: null,
+        valor: null,
+        dataHora: dataFormatada,
+        status: null
+    }
+
+    transacao.nome = nome;
+    transacao.descricao = descricao;
+    transacao.valor = valor;
+    transacoes.push(transacao);
+    salvarTransacoes();
+    renderizarTransacoes();
     console.log(transacoes);
 
 }
 
+carregarTransacoes();
+renderizarTransacoes();
 formTransacao.addEventListener("submit", enviaFormulario);
 
 
