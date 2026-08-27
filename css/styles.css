@@ -12,7 +12,7 @@ body {
     display: flex;
 }
 
-.sidebar{
+.sidebar {
     width: 240px;
     min-height: 100vh;
     background-color: #181818;
@@ -22,7 +22,7 @@ body {
     gap: 100px;
 }
 
-.logo{
+.logo {
     font-size: 21px;
     color: #c7c5c1;
 }
@@ -32,14 +32,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+
 }
 
 .sidebar a {
     text-decoration: none;
     color: #D4AF37;
     font-size: 18px;
-    font-weight: 400; 
+    font-weight: 400;
     display: block;
     padding: 10px 12px;
     border-bottom: 1px solid #303030;
@@ -54,7 +54,7 @@ body {
     border-radius: 6px;
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,7 +67,7 @@ main {
     padding: 30px;
 }
 
-.pendencias{
+.pendencias {
     margin-top: 40px;
 }
 
@@ -95,14 +95,14 @@ main {
     background-color: #b8962e;
 }
 
-.resumo{
+.resumo {
     display: flex;
     justify-content: center;
     gap: 40px;
     padding-top: 80px;
 }
 
-.card{
+.card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,12 +115,12 @@ main {
     gap: 8px;
 }
 
-.titulo-card{
+.titulo-card {
     font-size: 16px;
     font-weight: 400;
 }
 
-.descricao-card{
+.descricao-card {
     font-size: 20px;
     font-weight: 600;
 }
@@ -129,7 +129,7 @@ main {
     margin-top: 40px;
 }
 
-.titulo-gastos{
+.titulo-gastos {
     margin-bottom: 20px;
 }
 
@@ -145,7 +145,7 @@ main {
     border: 1px solid #3a3a3a;
 }
 
-.legenda{
+.legenda {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -229,4 +229,70 @@ main {
 
 #form-transacao button:hover {
     background-color: #b8962e;
+}
+
+#modal-transacao {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+#card-modal {
+    background-color: #3a3a3a;
+    width: 30%;
+    padding: 30px;
+    border-radius: 6px;
+    border: 1px solid #858282;
+}
+
+#card-modal input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: none;
+
+}
+
+.botao-modal {
+    display: flex;
+    gap: 4px;
+}
+
+#cancelar-modal {
+    background-color: rgb(194, 23, 11);
+    color: #fcfafa;
+    border: 0px;
+}
+
+#salvar-modal {
+    background-color: rgb(67, 136, 2);
+    color: #ffffff;
+    border: 0px;
+}
+
+#card-modal button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#salvar-modal:hover {
+    background-color: rgb(48, 99, 1);
+}
+
+#cancelar-modal:hover {
+    background-color: rgb(122, 8, 0);
 }

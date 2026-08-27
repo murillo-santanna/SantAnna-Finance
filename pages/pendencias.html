@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Pendências | Sant'Anna Finance</title>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h1 class="logo">Sant'Anna Finance</h1>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Dashboard</a></li>
+                <li><a href="">Pendências</a></li>
+                <li><a href="./transacoes.html">Transações</a></li>
+                <li><a href="">Pessoas</a></li>
+                <li><a href="">Configurações</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+
+        <header class="header">
+            <h2 class="titulo-header">Pendências</h2>
+            <p>Gerencie suas pendências financeiras</p>
+        </header>
+
+        <section class="pendencias">
+            <h1>Pendências</h1>
+            <div class="cabecalho-transacoes">
+                <span>Nome</span>
+                <span>Descrição</span>
+                <span>Valor</span>
+                <span>Data</span>
+                <span>Ação</span>
+            </div>
+
+
+            <div id="lista-pendencias"></div>
+        </section>
+        <section id="modal-transacao">
+            <div id="card-modal">
+                <h3 id="titulo-modal"></h3>
+                <input id="modal-nome" type="text" placeholder="Digite seu nome">
+                <input id="modal-descricao" type="text" placeholder="Digite a descrição">
+                <div class="botao-modal">
+                    <button id="cancelar-modal">Cancelar</button>
+                    <button id="salvar-modal">Salvar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../js/app.js"></script>
+
+</body>
+
+</html>
