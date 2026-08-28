@@ -74,7 +74,6 @@ if (salvarModal) {
 
 carregarTransacoes();
 
-carregarTransacoes();
 
 if (listaTransacoes) {
     renderizarTransacoes(listaTransacoes);
