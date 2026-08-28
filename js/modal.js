@@ -13,7 +13,11 @@ function classificarTransacao(transacao, modalNome, modalDescricao, tituloModal,
 function salvarClassificacao(transacao, modalNome, modalDescricao) {
     transacao.nome = modalNome.value;
     transacao.descricao = modalDescricao.value;
-    transacao.status = "Classificada";
+    if(transacao.nome === "" || transacao.descricao === ""){
+        transacao.status = "Pendente";
+    }else{
+        transacao.status = "Classificada";
+    }
     salvarTransacoes();
 }
 

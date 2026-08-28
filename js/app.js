@@ -57,19 +57,27 @@ if (cancelarModal) {
 
 if (salvarModal) {
     salvarModal.addEventListener("click", () => {
-    salvarClassificacao(
-        transacaoSelecionada,
-        modalNome,
-        modalDescricao
-    );
 
-    modalTransacao.style.display = "none";
+        if (modalNome.value === "" || modalDescricao.value === "") {
+            alert("Preencha todos os campos!")
+            return;
+        }
 
-    renderizarPendencias(
-        listaPendencias,
-        selecionarTransacao
-    );
-});
+        salvarClassificacao(
+            transacaoSelecionada,
+            modalNome,
+            modalDescricao
+        );
+
+
+
+        modalTransacao.style.display = "none";
+
+        renderizarPendencias(
+            listaPendencias,
+            selecionarTransacao
+        );
+    });
 }
 
 carregarTransacoes();
