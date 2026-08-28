@@ -1,7 +1,9 @@
 import {
     carregarTransacoes,
     renderizarTransacoes,
-    enviaFormulario
+    enviaFormulario,
+    salvarTransacoes,
+    obterClassificadas
 } from "./transacoes.js";
 
 import {
@@ -35,6 +37,11 @@ let transacaoSelecionada = null;
 
 function selecionarTransacao(transacao) {
     transacaoSelecionada = transacao;
+    classificarTransacao(transacao,
+        modalNome,
+        modalDescricao,
+        tituloModal,
+        modalTransacao)
 }
 
 if (formTransacao) {
@@ -69,14 +76,20 @@ if (salvarModal) {
             modalDescricao
         );
 
-
-
         modalTransacao.style.display = "none";
 
-        renderizarPendencias(
-            listaPendencias,
-            selecionarTransacao
-        );
+        if (listaTransacoes) {
+            renderizarTransacoes(
+                listaTransacoes, selecionarTransacao
+            );
+        }
+
+        if (listaPendencias) {
+            renderizarPendencias(
+                listaPendencias,
+                selecionarTransacao
+            );
+        }
     });
 }
 
@@ -84,7 +97,7 @@ carregarTransacoes();
 
 
 if (listaTransacoes) {
-    renderizarTransacoes(listaTransacoes);
+    renderizarTransacoes(listaTransacoes, selecionarTransacao);
 }
 
 if (listaPendencias) {

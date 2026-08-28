@@ -14,12 +14,12 @@ function carregarTransacoes() {
 }
 
 function obterClassificadas() {
-    return transacoes.filter(transacao=>{
+    return transacoes.filter(transacao =>{
         return transacao.status === "Classificada"
     });
 }
 
-function enviaFormulario(event, nomeInput, descricaoInput, valorInput, listaTransacoes) {
+function enviaFormulario(event, nomeInput, descricaoInput, valorInput, listaTransacoes, classificarTransacao) {
     event.preventDefault();
 
     const dataHora = new Date();
@@ -64,7 +64,7 @@ function enviaFormulario(event, nomeInput, descricaoInput, valorInput, listaTran
 }
 
 // Renderização
-function renderizarTransacoes(listaTransacoes) {
+function renderizarTransacoes(listaTransacoes, aoEditar) {
     listaTransacoes.textContent = "";
     obterClassificadas().forEach(transacao => {
         const elementoTransacao = document.createElement("div");
@@ -86,10 +86,16 @@ function renderizarTransacoes(listaTransacoes) {
         dataElemento.textContent = transacao.dataHora
         elementoTransacao.appendChild(dataElemento);
 
+        const botaoEditar = document.createElement("button");
+        botaoEditar.textContent = "Editar";
+        botaoEditar.classList.add("editar");
+        elementoTransacao.appendChild(botaoEditar);
+        botaoEditar.addEventListener("click", () =>{
+            aoEditar(transacao);
+        })
         listaTransacoes.appendChild(elementoTransacao);
     });
 }
-
 
 export {
     transacoes,
@@ -97,5 +103,5 @@ export {
     carregarTransacoes,
     obterClassificadas,
     enviaFormulario,
-    renderizarTransacoes
+    renderizarTransacoes, 
 };

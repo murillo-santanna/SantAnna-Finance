@@ -169,6 +169,7 @@ main {
 }
 
 
+
 .nova-transacao {
     margin-top: 40px;
     background-color: #303030;
@@ -295,4 +296,16 @@ main {
 
 #cancelar-modal:hover {
     background-color: rgb(122, 8, 0);
+}
+
+.editar{
+    height: 40px;
+    padding: 0 18px;
+    color: #181818;
+    background-color: #D4AF37;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
 }
